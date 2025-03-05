@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require('../models/user.model');
+const validatePassword = require('../middlewares/password.middleware')
 const bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 
@@ -7,7 +8,7 @@ var jwt = require('jsonwebtoken');
 const userRouter = express.Router();
 
 
-userRouter.post('/register', async (req, res) => {
+userRouter.post('/register', validatePassword, async (req, res) => {
     const { name, email, password } = req.body;
     try {
         bcrypt.hash(password, 5, async (err, hash) => {
