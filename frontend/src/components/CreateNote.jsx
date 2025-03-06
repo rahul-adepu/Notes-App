@@ -20,7 +20,6 @@ function CreateNote() {
     }
 
 
-
     const create = async () => {
         await axios.post("http://localhost:8000/notes/create", { title, body: textarea }, {
             headers: {
@@ -40,7 +39,7 @@ function CreateNote() {
 
     return (
         <>
-            <Button onClick={onOpen}>
+            <Button onClick={() => token ? onOpen() : alert("Please login to create a new note")}>
                 New Note
             </Button>
             {/* <Button ml={4} ref={finalRef}>
