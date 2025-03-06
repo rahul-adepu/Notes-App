@@ -10,7 +10,6 @@ function Login() {
     const navigate = useNavigate();
 
     const userLogin = async () => {
-        // Reset errors before checking
         setError({ email: "", password: "" });
 
         if (!email || !password) {
@@ -18,7 +17,7 @@ function Login() {
                 email: !email ? "Email is required" : "",
                 password: !password ? "Password is required" : "",
             });
-            return; // Stop function execution
+            return;
         }
 
         try {
@@ -38,12 +37,12 @@ function Login() {
         <Center h="calc(100vh - 50px)" p={4}>
             <Box
                 border="0.0px solid red"
-                w={{ base: "90vw", md: "50vw" }} // Adjust width for mobile and desktop
-                h={{ base: "auto", md: 500 }} // Auto height for mobile
+                w={{ base: "90vw", md: "50vw" }}
+                h={{ base: "auto", md: 500 }}
                 boxShadow="md"
                 borderRadius="lg"
                 display="flex"
-                flexDirection={{ base: "column", md: "row" }} // Column for mobile, row for desktop
+                flexDirection={{ base: "column", md: "row" }}
                 justifyContent="space-between"
                 alignItems="center"
                 p={4}
