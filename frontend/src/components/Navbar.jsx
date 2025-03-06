@@ -1,5 +1,6 @@
 import { Box, Button, Heading } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom';
+import CreateNote from './CreateNote';
 
 function Navbar() {
     const navigate = useNavigate();
@@ -14,6 +15,7 @@ function Navbar() {
         <Box style={{ border: "1px solid red", display: "flex", justifyContent: "space-between", alignItems: "center" }} w="100vw">
             <Heading ml={5}>Notes</Heading>
             <Box style={{ border: "1px solid red", display: "flex", justifyContent: "space-between" }}>
+                <CreateNote />
                 {
                     token ?
                         <Button mr={5} onClick={logout}>Logout</Button> :
