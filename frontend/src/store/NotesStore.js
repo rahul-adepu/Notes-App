@@ -6,8 +6,13 @@ const getAllNotes = create((set) => ({
     notes: [],
     loading: false,
     error: null,
+
     selectedNote: null,
     setSelectedNote: (item) => set({ selectedNote: item }),
+    updateNote: (name, value) => set((state) => ({
+        selectedNote: { ...state.selectedNote, [name]: value },
+    })),
+
 
     fetchAllNotes: async () => {
         set({ loading: true, error: null });

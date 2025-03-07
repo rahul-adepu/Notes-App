@@ -3,13 +3,14 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useBreakpointValue } from "@chakra-ui/react";
 import getAllNotes from "../store/NotesStore";
+import UpdateNote from "./UpdateNote";
 
 function Content() {
     const { notes, selectedNote, setSelectedNote, fetchAllNotes } = getAllNotes();
     const user = localStorage.getItem("name");
     const navigate = useNavigate();
 
-    
+
     const isMobile = useBreakpointValue({ base: true, md: false });
 
     useEffect(() => {
@@ -48,7 +49,9 @@ function Content() {
             </Container>
 
             {!isMobile && selectedNote && (
+
                 <Container maxW="8xl" mr={0} bg="blue.100">
+                    <UpdateNote />
                     <Text fontSize="6xl" fontWeight="bold">{selectedNote.title}</Text>
                     <Text mt={2} fontSize="4xl">{selectedNote.body}</Text>
                 </Container>
