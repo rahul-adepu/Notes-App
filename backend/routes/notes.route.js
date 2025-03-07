@@ -30,6 +30,16 @@ notesRoute.get("/", async (req, res) => {
     }
 })
 
+notesRoute.get('/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const note = await NotesModel.findById({ _id: id })
+        res.send(note)
+    } catch (error) {
+        res.send(error.message)
+    }
+})
+
 
 notesRoute.patch("/update/:id", checkWhetherUserIsCorrect, async (req, res) => {
     const { id } = req.params;
