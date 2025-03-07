@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { Textarea } from '@chakra-ui/react'
 import { Button, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from "@chakra-ui/react";
 import axios from 'axios';
+import getAllNotes from '../store/NotesStore';
 
 function CreateNote() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [textarea, setTextarea] = useState('');
     const [title, setTitle] = useState('');
+    const { fetchAllNotes } = getAllNotes();
 
     const initialRef = React.useRef(null)
     const finalRef = React.useRef(null)
@@ -27,6 +29,7 @@ function CreateNote() {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             }
         })
+        fetchAllNotes();
         onClose()
         setTitle("");
         setTextarea("");
