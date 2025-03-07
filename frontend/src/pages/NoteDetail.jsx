@@ -1,13 +1,13 @@
 import { Box, Button, Heading, Text } from "@chakra-ui/react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import UpdateNote from "../components/UpdateNote";
 import getAllNotes from "../store/NotesStore";
+import DeleteNote from "../components/DeleteNote";
 
 function NoteDetail() {
     const { id } = useParams();
-    const navigate = useNavigate();
     const [note, setNote] = useState(null);
     const { selectedNote, setSelectedNote } = getAllNotes();
 
@@ -39,11 +39,16 @@ function NoteDetail() {
     }
 
     return (
-        <Box p={6} height="calc(100vh - 50px)">
-            <Button onClick={() => navigate(-1)} colorScheme="blue" mb={4}>← Back</Button>
-            <UpdateNote />
-            <Heading fontSize="3xl">{note.title}</Heading>
-            <Text mt={4} fontSize="xl">{note.body}</Text>
+        <Box p={6} minHeight="calc(100vh - 57px)">
+            <Box display="flex" justifyContent="space-between">
+                {/* <Button onClick={() => navigate(-1)} colorScheme="blue" mb={4}>← Back</Button> */}
+                <UpdateNote />
+                <DeleteNote />
+            </Box>
+            <Box mt={4}>
+                <Heading fontSize="3xl">{note.title}</Heading>
+                <Text mt={4} fontSize="xl">{note.body}</Text>
+            </Box>
         </Box>
     );
 }

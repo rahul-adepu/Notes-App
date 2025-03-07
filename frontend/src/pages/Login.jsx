@@ -34,7 +34,7 @@ function Login() {
     };
 
     return (
-        <Center h="calc(100vh - 50px)" p={4}>
+        <Center minHeight="calc(100vh - 57px)" p={4}>
             <Box
                 border="0.0px solid red"
                 w={{ base: "90vw", md: "50vw" }}

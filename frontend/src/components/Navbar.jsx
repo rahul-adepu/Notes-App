@@ -12,9 +12,9 @@ function Navbar() {
         navigate('/login')
     }
     return (
-        <Box style={{ border: "1px solid red", display: "flex", justifyContent: "space-between", alignItems: "center" }} w="100vw">
-            <Heading ml={5}>Notes</Heading>
-            <Box style={{ border: "1px solid red", display: "flex", justifyContent: "space-between" }}>
+        <Box style={{ border: "1px solid gray", height:"57px", display: "flex", justifyContent: "space-between", alignItems: "center" }} w="100vw">
+            <Heading ml={6} fontFamily="'Poppins', sans-serif">Notes</Heading>
+            <Box style={{ display: "flex", justifyContent: "space-between" }} width={{ base: "60vw", md: "12vw" }}>
                 <CreateNote />
                 {
                     token ?

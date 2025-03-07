@@ -61,7 +61,7 @@ function UpdateNote() {
 
     return (
         <>
-            <Button onClick={onOpen}>Edit</Button>
+            <Button onClick={onOpen} colorScheme="blue">Edit</Button>
 
             <Modal
                 initialFocusRef={initialRef}
