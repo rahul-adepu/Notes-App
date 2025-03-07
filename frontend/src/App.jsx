@@ -4,6 +4,7 @@ import SignUp from './pages/SignUp'
 import Navbar from './components/Navbar'
 import Content from './components/Content'
 import PrivateRoute from './components/PrivateRoute'
+import NoteDetail from './pages/NoteDetail'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<SignUp />} />
+        <Route path="/notes/:id" element={<NoteDetail />} />
 
       </Routes>
     </>
