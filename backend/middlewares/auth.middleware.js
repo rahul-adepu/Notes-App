@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken')
 const NotesModel = require('../models/notes.model')
+require("dotenv").config();
+
 const auth = (req, res, next) => {
 
     const token = req.headers.authorization?.split(" ")[1];
@@ -8,7 +10,7 @@ const auth = (req, res, next) => {
         return res.send("Please Login");
     }
     try {
-        const decoded = jwt.verify(token, 'adepu');
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
         // console.log(decoded)
         if (decoded) {
             req.body.userID = decoded.userID;

@@ -3,6 +3,7 @@ const User = require('../models/user.model');
 const validatePassword = require('../middlewares/password.middleware')
 const bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 
 const userRouter = express.Router();
@@ -30,7 +31,7 @@ userRouter.post('/login', async (req, res) => {
         if (findingUser) {
             bcrypt.compare(password, findingUser.password, function (err, result) {
                 if (result) {
-                    const token = jwt.sign({ userID: findingUser._id, name: findingUser.name }, 'adepu');
+                    const token = jwt.sign({ userID: findingUser._id, name: findingUser.name }, process.env.JWT_SECRET);
                     res.json({ msg: "Login Successfull", token, user: findingUser.name })
                 } else {
                     res.json({ msg: "Wrong Credentials" })
