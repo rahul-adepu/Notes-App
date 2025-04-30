@@ -11,13 +11,14 @@ function NoteDetail() {
     const [note, setNote] = useState(null);
     const { selectedNote, setSelectedNote } = getAllNotes();
 
+    const baseURL = import.meta.env.VITE_API_BASE_URL;
 
     console.log("id", id)
     const token = localStorage.getItem('token')
 
     useEffect(() => {
         async function getIndividualNote() {
-            await axios.get(`http://localhost:8000/notes/${id}`, {
+            await axios.get(`${baseURL}/notes/${id}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token} `

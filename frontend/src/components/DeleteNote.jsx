@@ -8,8 +8,10 @@ function DeleteNote() {
     const cancelRef = React.useRef()
     const { selectedNote, setSelectedNote, fetchAllNotes } = getAllNotes();
 
+    const baseURL = import.meta.env.VITE_API_BASE_URL;
+
     const handleDelete = async () => {
-        const deleteNote = await axios.delete(`http://localhost:8000/notes/delete/${selectedNote._id}`, {
+        const deleteNote = await axios.delete(`${baseURL}/notes/delete/${selectedNote._id}`, {
             headers: {
                 "Content-type": 'application/json',
                 "Authorization": `Bearer ${localStorage.getItem('token')}`

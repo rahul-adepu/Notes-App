@@ -11,6 +11,8 @@ function SignUp() {
     const [error, setError] = useState({ name: "", email: "", password: "", confirmPassword: "" });
     const navigate = useNavigate();
 
+    const baseURL = import.meta.env.VITE_API_BASE_URL;
+
     const userRegister = async () => {
         if (password !== confirmPassword) {
             return;
@@ -29,7 +31,7 @@ function SignUp() {
 
         try {
             console.log(name, email, password)
-            const isUserLoggedIn = await axios.post("http://localhost:8000/user/register", { name, email, password });
+            const isUserLoggedIn = await axios.post(`${baseURL}/user/register`, { name, email, password });
             console.log(isUserLoggedIn);
             navigate('/login');
             console.log("Register")
@@ -42,12 +44,12 @@ function SignUp() {
         <Center minHeight="calc(100vh - 57px)" p={4}>
             <Box
                 // border="0.0px solid red"
-                w={{ base: "90vw", md: "50vw" }} 
-                h={{ base: "auto", md: 500 }} 
+                w={{ base: "90vw", md: "50vw" }}
+                h={{ base: "auto", md: 500 }}
                 boxShadow="md"
                 borderRadius="lg"
                 display="flex"
-                flexDirection={{ base: "column", md: "row" }} 
+                flexDirection={{ base: "column", md: "row" }}
                 justifyContent="space-between"
                 alignItems="center"
                 p={4}

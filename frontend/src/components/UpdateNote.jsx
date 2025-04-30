@@ -21,6 +21,8 @@ function UpdateNote() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { selectedNote, updateNote, fetchAllNotes } = getAllNotes();
 
+    const baseURL = import.meta.env.VITE_API_BASE_URL;
+    
     const initialRef = React.useRef(null)
     const finalRef = React.useRef(null)
 
@@ -45,14 +47,14 @@ function UpdateNote() {
         };
 
         try {
-            await axios.patch(`http://localhost:8000/notes/update/${selectedNote._id}`, payload, {
+            await axios.patch(`${baseURL}/notes/update/${selectedNote._id}`, payload, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${localStorage.getItem("token")}`,
                 }
             });
             fetchAllNotes()
-            onClose(); 
+            onClose();
         } catch (error) {
             console.error("Error updating note:", error);
         }

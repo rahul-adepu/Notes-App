@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import axios from 'axios';
 
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 const getAllNotes = create((set) => ({
     notes: [],
@@ -13,12 +14,11 @@ const getAllNotes = create((set) => ({
         selectedNote: { ...state.selectedNote, [name]: value },
     })),
 
-
     fetchAllNotes: async () => {
         set({ loading: true, error: null });
 
         try {
-            const response = await axios.get("http://localhost:8000/notes", {
+            const response = await axios.get(`${baseURL}/notes`, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${localStorage.getItem("token")}`

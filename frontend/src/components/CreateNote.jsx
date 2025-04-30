@@ -4,11 +4,18 @@ import { Button, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButt
 import axios from 'axios';
 import getAllNotes from '../store/NotesStore';
 
+
+
+
 function CreateNote() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [textarea, setTextarea] = useState('');
     const [title, setTitle] = useState('');
     const { fetchAllNotes } = getAllNotes();
+
+    const baseURL = import.meta.env.VITE_API_BASE_URL;
+
+
 
     const initialRef = React.useRef(null)
     const finalRef = React.useRef(null)
@@ -23,7 +30,7 @@ function CreateNote() {
 
 
     const create = async () => {
-        await axios.post("http://localhost:8000/notes/create", { title, body: textarea }, {
+        await axios.post(`${baseURL}/notes/create`, { title, body: textarea }, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${localStorage.getItem("token")}`

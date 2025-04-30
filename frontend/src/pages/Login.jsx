@@ -9,6 +9,8 @@ function Login() {
     const [error, setError] = useState({ email: "", password: "" }); // Validation state
     const navigate = useNavigate();
 
+    const baseURL = import.meta.env.VITE_API_BASE_URL;
+    
     const userLogin = async () => {
         setError({ email: "", password: "" });
 
@@ -21,7 +23,7 @@ function Login() {
         }
 
         try {
-            const isUserLoggedIn = await axios.post("http://localhost:8000/user/login", { email, password });
+            const isUserLoggedIn = await axios.post(`${baseURL}/user/login`, { email, password });
 
             if (isUserLoggedIn.data.token) {
                 localStorage.setItem("token", isUserLoggedIn.data.token);
